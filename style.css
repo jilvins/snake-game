@@ -1,0 +1,17 @@
+.snake-grid {
+    width: 440px;
+    height: 440px;
+    border: solid violet;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.snake-grid div {
+    width: 40px;
+    height: 40px;
+    border: solid 2px black;
+}
+
+.snake {
+    background-color: yellow;
+}
