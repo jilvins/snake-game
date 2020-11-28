@@ -1,11 +1,13 @@
 const gameGrid = document.querySelector('.snake-grid');
-const startButton = document.querySelector('.start')
-const score = document.getElementById('current-score')
+const startButton = document.querySelector('.start');
+const score = document.getElementById('current-score');
+let lost = document.querySelector('.lost');
 let squares = []
 let newSnake = [2, 1, 0]
 let movementDirection = 1
 let gridWidth = 10
 let appleIndex = 0
+let bombIndex = 0
 let begginingScore = 0
 let begginingTime = 1000
 let speed = 0.9
@@ -30,9 +32,11 @@ function move () {
         newSnake[0] % gridWidth == gridWidth-1 && movementDirection === 1 ||
         newSnake[0] % gridWidth == 0 && movementDirection === -1 ||
         newSnake[0] - gridWidth < 0 && movementDirection === -gridWidth ||
-        squares[newSnake[0] + movementDirection].classList.contains('snake')
+        squares[newSnake[0] + movementDirection].classList.contains('snake') ||
+        squares[newSnake[0] + movementDirection].classList.contains('bomb')
     ) 
-    return clearInterval(movementSpeed)
+    return clearInterval(movementSpeed), lost.classList.remove('lost')
+    
 
     let tail = newSnake.pop()
     squares[tail].classList.remove('snake')
@@ -40,13 +44,15 @@ function move () {
 
         if (squares[newSnake[0]].classList.contains('apple')){
             squares[newSnake[0]].classList.remove('apple')
+            squares[bombIndex].classList.remove('bomb')
             squares[tail].classList.add('snake')
             newSnake.push(tail)
             createApple()
+            createBomb()
             begginingScore++
-            clearInterval(movementSpeed)   
             score.textContent = begginingScore
-            begginingTime * speed
+            clearInterval(movementSpeed)   
+            begginingTime = begginingTime * speed
             movementSpeed = setInterval(move, begginingTime)
         }
 
@@ -58,14 +64,17 @@ function move () {
 function startGame () {
     newSnake.forEach(part => squares[part].classList.remove('snake'))
     squares[appleIndex].classList.remove('apple')
+    squares[bombIndex].classList.remove('bomb')
     clearInterval(movementSpeed)
     newSnake = [2, 1, 0]
     begginingScore = 0
+    lost.classList.add('lost')
     score.textContent = begginingScore
     movementDirection = 1
     begginingTime = 1000
     newSnake.forEach(part => squares[part].classList.add('snake'))
     createApple()
+    createBomb()
     movementSpeed = setInterval(move, begginingTime)
 }
 
@@ -90,6 +99,15 @@ function createApple () {
     squares[appleIndex].classList.add('apple')
 }
 createApple()
+
+function createBomb () {
+    do {
+        bombIndex = Math.floor(Math.random()*squares.length)
+    } while (squares[bombIndex].classList.contains('snake'))
+     (squares[bombIndex].classList.contains('apple'))
+    squares[bombIndex].classList.add('bomb')
+}
+createBomb()
 
 document.addEventListener('keyup', keyControl)
 startButton.addEventListener('click', startGame)
