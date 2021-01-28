@@ -1,21 +1,25 @@
 body{
-    background-image: url("images/skin-3052636_1920.jpg");  
+    background-image: url("images/skin-3052636_1920.jpg"); 
+    text-align: center; 
 }
 .game-container{
     background-color: wheat;
     width: 600px;
     margin: 0 auto;
     padding: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 h1 {
     margin: 20;
-    text-align: center;
     background-color: lightsalmon;
     color: green;
     padding: 15px;
     border: solid 5px burlywood;
-    box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
         
+}
+h3 {
+    text-decoration: underline;
 }
 
 .snake-grid {
@@ -29,9 +33,9 @@ h1 {
 }
 .game-control {
     background-color: tomato;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     margin: auto auto;
     width: 400px;
-    text-align: center;
     padding: 5px 0;
 }
 
@@ -47,12 +51,12 @@ h1 {
 }
 
 .apple {
-    background-image: url("images/apple.jfif");
+    background-image: url("images/apple.png");
     
     background-size: 40px 40px;
 }
 .bomb {
-    background-image: url("images/bomb.jpg");
+    background-image: url("images/bomb.png");
     
     background-size: 40px 40px;
 }
@@ -65,7 +69,33 @@ h1 {
     text-align: center;
 }
 
-.start:hover{
-    background-color: darkcyan;
-    
+.snake-head{
+    background-color: darkgreen;
+}
+
+.start{
+    display: none;
+}
+
+.one {
+    color: white;
+}
+.two {
+    color: lightblue;
+}.three {
+    color: blue;
+}.four {
+    color: greenyellow;
+}.five {
+    color: green;
+}.six {
+    color: brown;
+}.seven {
+    color: orange;
+}.eight {
+    color: orangered;
+}.nine {
+    color: red;
+}.ten {
+    color: gold;
 }

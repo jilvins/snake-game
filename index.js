@@ -48,11 +48,34 @@ function move () {
             squares[tail].classList.add('snake')
             newSnake.push(tail)
             createApple()
-            createBomb()
             begginingScore++
             score.textContent = begginingScore
             clearInterval(movementSpeed)   
             begginingTime = begginingTime * speed
+            if (begginingScore>1){
+                createBomb()
+            }
+            if (begginingScore === 1) {
+                score.classList.add("one")
+            }else if (begginingScore === 2) {
+                score.classList.add("two")
+            }else if (begginingScore === 3) {
+                score.classList.add("three")
+            }else if (begginingScore === 4) {
+                score.classList.add("four")
+            }else if (begginingScore === 5) {
+                score.classList.add("five")
+            }else if (begginingScore === 6) {
+                score.classList.add("six")
+            }else if (begginingScore === 7) {
+                score.classList.add("seven")
+            }else if (begginingScore === 8) {
+                score.classList.add("eight")
+            }else if (begginingScore === 9) {
+                score.classList.add("nine")
+            }else if (begginingScore === 10) {
+                score.classList.add("ten")
+            }
             movementSpeed = setInterval(move, begginingTime)
         }
 
@@ -74,7 +97,6 @@ function startGame () {
     begginingTime = 1000
     newSnake.forEach(part => squares[part].classList.add('snake'))
     createApple()
-    createBomb()
     movementSpeed = setInterval(move, begginingTime)
 }
 
@@ -89,7 +111,16 @@ function keyControl (e) {
         movementDirection = -1
     } else if (e.keyCode === 40) {
         movementDirection = + gridWidth
+    } else if (e.keyCode === 13) {
+        e.preventDefault();
+        startButton.click();
+    } else if (e.keyCode === 49) {
+
     }
+}
+
+function startBybotten (e) {
+    startButton
 }
 
 function createApple () {
@@ -107,7 +138,11 @@ function createBomb () {
      (squares[bombIndex].classList.contains('apple'))
     squares[bombIndex].classList.add('bomb')
 }
-createBomb()
+
+
+
+
+
 
 document.addEventListener('keyup', keyControl)
 startButton.addEventListener('click', startGame)
